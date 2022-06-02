@@ -1,0 +1,37 @@
+<div class="container">
+  
+  <button mat-fab matTooltip="Kategori Ekle" color="primary" (click)="Ekle()">
+    <mat-icon aria-label="label">add</mat-icon>
+  </button>
+<p>&nbsp;</p>
+ <mat-form-field>
+   <input matInput placeholder="Ara" (keyup)="Filtrele($event)">
+ </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="KatId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Kategori ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KatId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="KatAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Kategori Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KatAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="KatIlanSayisi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> İlan Sayısı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.KatIlanSayisi}} </mat-cell>
+    </ng-container>
+    
+  
+
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator
+        [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons="">
+  </mat-paginator>
+</div>

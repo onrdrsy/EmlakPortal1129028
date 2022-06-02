@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emlakDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ilan">
+    <Key>
+      <PropertyRef Name="IlanId" />
+    </Key>
+    <Property Name="IlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlanBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanAciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanFiyat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IlanOda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanKatsayisi" Type="Int32" />
+    <Property Name="IlanBulunankat" Type="Int32" />
+    <Property Name="IlanAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanDurum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IlanUyeId" Type="Int32" />
+    <Property Name="IlanKatId" Type="Int32" />
+    <Property Name="IlanTarih" Type="DateTime" Precision="3" />
+    <Property Name="IlanM2" Type="Int32" />
+    <NavigationProperty Name="Kategori" Relationship="Self.FK_Ilan_ToKategori" FromRole="Ilan" ToRole="Kategori" />
+    <NavigationProperty Name="Uye" Relationship="Self.FK_Ilan_ToUye" FromRole="Ilan" ToRole="Uye" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KatId" />
+    </Key>
+    <Property Name="KatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KatAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ilan" Relationship="Self.FK_Ilan_ToKategori" FromRole="Kategori" ToRole="Ilan" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="UyeId" />
+    </Key>
+    <Property Name="UyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UyeAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeParola" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UyeYetki" Type="Int32" />
+    <Property Name="UyeKayTar" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Ilan" Relationship="Self.FK_Ilan_ToUye" FromRole="Uye" ToRole="Ilan" />
+  </EntityType>
+  <Association Name="FK_Ilan_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+    <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KatId" />
+      </Principal>
+      <Dependent Role="Ilan">
+        <PropertyRef Name="IlanKatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ilan_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+    <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="UyeId" />
+      </Principal>
+      <Dependent Role="Ilan">
+        <PropertyRef Name="IlanUyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="emlakDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ilan" EntityType="Self.Ilan" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" />
+    <AssociationSet Name="FK_Ilan_ToKategori" Association="Self.FK_Ilan_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Ilan" EntitySet="Ilan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ilan_ToUye" Association="Self.FK_Ilan_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="Ilan" EntitySet="Ilan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

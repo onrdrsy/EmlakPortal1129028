@@ -1,0 +1,63 @@
+<div class="container">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ilan?.IlanBaslik}}</mat-card-title>
+      <mat-card-subtitle style="font-size: 16px;"> İlan Numarası: <strong># {{ilan?.IlanId}}</strong> , Kategori: <strong>{{ilan?.IlanKatAdi}}</strong></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ilan?.IlanFoto}}" alt="İlan Fotoğrafı" class="center" style="max-width: 50%">
+    <mat-card-content>
+      <div class="content">
+        <mat-card class="subCard">
+          <mat-card-content>
+            <mat-list role="list">
+              <mat-list-item role="listitem"> <span>Fiyat :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanFiyat | currency: '₺'}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>İlan Durumu :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanDurum}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>Kategori</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanKatAdi}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>İlan Tarihi :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanTarih | date:"dd.MM.yyyy"}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>Adres :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanAdres}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>M² :</span> &nbsp; &nbsp; &nbsp; <span class="value"><strong>{{ilan?.IlanM2}}</strong></span></mat-list-item>
+              <div *ngIf="ilan?.IlanKatId != 2">
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem" > <span>Oda Sayısı :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanOda}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>Bulunduğu Kat :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanBulunankat}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+              <mat-list-item role="listitem"> <span>Kat Sayısı :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanKatsayisi}}</strong></span></mat-list-item>
+              <mat-divider></mat-divider>
+            </div>
+            </mat-list>
+          </mat-card-content>
+        </mat-card> &nbsp; &nbsp;
+      
+        <mat-card class="subCard">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ilan?.IlanUyeAdi}} {{ilan?.IlanUyeSoyadi}}</mat-card-title>
+            <mat-card-subtitle> İlan Sahibi </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            
+            <p></p>
+            <mat-list role="list">
+              <mat-list-item role="listitem"> <span>Telefon Numarası :</span> &nbsp; &nbsp; &nbsp;<span class="value"><strong>{{ilan?.IlanUyeTelefon}}</strong></span></mat-list-item>
+            </mat-list>
+          </mat-card-content>
+          <mat-card-actions>
+            &nbsp; <button mat-raised-button color="primary" *ngIf="ilan?.IlanUyeId == uyeId" [routerLink]="['/ilanlarim']">Düzenle</button>
+            </mat-card-actions>
+        </mat-card> </div>
+        &nbsp;
+        <h1>Açıklama :</h1>
+       <p [innerHTML]="ilan?.IlanAciklama | safeHtml" style="font-size: 15px;"></p>
+       &nbsp;
+    </mat-card-content>
+  </mat-card>
+  
+</div>

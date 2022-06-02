@@ -1,0 +1,42 @@
+.mat-column-IlanBaslik {
+    flex: 0 0 30%;
+}
+.mat-column-IlanDurum {
+    
+    min-width: 100px;
+    max-width: 100px;
+}
+.mat-column-IlanFoto {
+    
+    min-width: 150px;
+    max-width: 150px;
+    
+}
+.mat-column-IlanKatAdi {
+    
+    min-width: 100px;
+    max-width: 100px;
+}
+.mat-column-IlanOda {
+    
+    min-width: 100px;
+    max-width: 125px;
+}
+.mat-column-IlanM2 {
+    
+    min-width: 100px;
+    max-width: 100px;
+}
+.mat-column-IlanAdres {
+    
+    min-width: 100px;
+    max-width: 100px;
+}
+.mat-column-IlanFiyat {
+    
+    min-width: 150px;
+    max-width: 150px;
+}
+.mat-row:hover {
+    background-color: rgb(216, 214, 214);
+  }

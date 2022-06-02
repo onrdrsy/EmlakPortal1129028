@@ -1,0 +1,66 @@
+<div class="container">
+  <button mat-fab matTooltip="İlan Ekle" color="primary" (click)="Ekle()">
+    <mat-icon aria-label="label">add</mat-icon>
+  </button>
+  <p>&nbsp;</p>
+ <mat-form-field>
+   <input matInput placeholder="Ara" (keyup)="Filtrele($event)">
+ </mat-form-field>
+ <mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="UyeId">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Üye ID
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeId}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="UyeAd">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Adı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeAd}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="UyeSoyad">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Soyadı
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeSoyad}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="UyeMail">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> E-posta
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeMail}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="UyeTelefon">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Yetki
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeTelefon}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="UyeKayTar">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Kayıt Tarihi
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit"> {{kayit.UyeKayTar | date:"dd.MM.yyyy HH:mm:ss"}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="islemler">
+    <mat-header-cell *matHeaderCellDef> İşlemler
+    </mat-header-cell>
+    <mat-cell *matCellDef="let kayit">
+      <button mat-icon-button color="primary" [routerLink]="['/admin/ilanlar', kayit.KatId]">
+        <mat-icon aria-label="label">article</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Düzenle" (click)="Duzenle(kayit)">
+        <mat-icon aria-label="label">edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" matTooltip="Sil" (click)="Sil(kayit)">
+        <mat-icon aria-label="label">delete</mat-icon>
+      </button>
+      
+    </mat-cell>
+
+  </ng-container>
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator
+      [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons="">
+</mat-paginator>
+</div>

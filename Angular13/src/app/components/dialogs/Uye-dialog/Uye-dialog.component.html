@@ -1,0 +1,44 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container" *ngIf="islem!='detay'">
+  <form [formGroup]="frm">
+
+    <mat-form-field appearance="outline" style="width: 75%;">
+      <mat-label>Uye Adı</mat-label>
+      <input matInput placeholder="Uye Adı" formControlName="UyeAd" name="UyeAd" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 75%;">
+      <mat-label>Uye Soyadı</mat-label>
+      <input matInput placeholder="üye Soyadı" formControlName="UyeSoyad" name="UyeSoyad" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Telefon Numarası</mat-label>
+      <input matInput formControlName="UyeTelefon" name="UyeTelefon" required>
+      <mat-icon matSuffix>phone</mat-icon>
+      <mat-hint>Include area code</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="UyeMail" name="UyeMail" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="UyeParola" name="UyeParola">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="outline" *ngIf="apiServis.OturumKontrol()">
+      <mat-label>Yetki</mat-label>
+      <mat-select matInput placeholder="Seçiniz" formControlName="UyeYetki" name="UyeYetki" >
+        <mat-option value="0">Uye</mat-option>
+        <mat-option value="1">Admin</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(frm.value)" [disabled]="frm.invalid">Kaydet</button>&nbsp; 
+  <button mat-raised-button color="warn" (click)="dialogRef.close()" >Vazgeç</button>
+  </div>

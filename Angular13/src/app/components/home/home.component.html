@@ -1,0 +1,61 @@
+<div class="container">
+  <h1>Son Eklenen İlanları aşağıda! Sen de ilan verebilirsin</h1>
+<p>&nbsp;</p>
+  <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z4">
+    <ng-container matColumnDef="IlanFoto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> 
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> <img src="{{kayit.IlanFoto}}" alt="" class="img-fluid" style="max-width: 100px"> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanKatAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Emlak Tipi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.IlanKatAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanDurum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Durum
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.IlanDurum}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanBaslik">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Başlık
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">{{kayit.IlanBaslik}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanM2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> m²
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">{{kayit.IlanM2}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanOda">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Oda Sayısı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">{{kayit.IlanOda}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanFiyat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Fiyat
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit" >{{kayit.IlanFiyat | currency: '₺'}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanAdres">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Adres
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.IlanAdres}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="IlanTarih">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Tarih
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.IlanTarih | date:"dd.MM.yyyy"}} </mat-cell>
+    </ng-container>
+
+
+  
+
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let kayit columns: displayedColumns;" [routerLink]="['/ilanlar/detay',kayit.IlanId]"></mat-row>
+  </mat-table>
+  <mat-paginator
+        [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons="">
+  </mat-paginator>
+</div>

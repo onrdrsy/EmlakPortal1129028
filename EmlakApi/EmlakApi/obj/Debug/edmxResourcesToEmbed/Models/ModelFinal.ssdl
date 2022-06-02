@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emlakDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ilan">
+    <Key>
+      <PropertyRef Name="IlanId" />
+    </Key>
+    <Property Name="IlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IlanBaslik" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanAciklama" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanFiyat" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="IlanOda" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanKatsayisi" Type="int" />
+    <Property Name="IlanBulunankat" Type="int" />
+    <Property Name="IlanAdres" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanDurum" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanFoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="IlanUyeId" Type="int" />
+    <Property Name="IlanKatId" Type="int" />
+    <Property Name="IlanTarih" Type="datetime" />
+    <Property Name="IlanM2" Type="int" />
+  </EntityType>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="KatId" />
+    </Key>
+    <Property Name="KatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KatAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="UyeId" />
+    </Key>
+    <Property Name="UyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UyeAd" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeSoyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeTelefon" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeMail" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeParola" Type="nvarchar" MaxLength="50" />
+    <Property Name="UyeYetki" Type="int" />
+    <Property Name="UyeKayTar" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Ilan_ToKategori">
+    <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+    <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="KatId" />
+      </Principal>
+      <Dependent Role="Ilan">
+        <PropertyRef Name="IlanKatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ilan_ToUye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+    <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="UyeId" />
+      </Principal>
+      <Dependent Role="Ilan">
+        <PropertyRef Name="IlanUyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="emlakDBModelStoreContainer">
+    <EntitySet Name="Ilan" EntityType="Self.Ilan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ilan_ToKategori" Association="Self.FK_Ilan_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Ilan" EntitySet="Ilan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ilan_ToUye" Association="Self.FK_Ilan_ToUye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="Ilan" EntitySet="Ilan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

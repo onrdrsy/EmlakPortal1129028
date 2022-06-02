@@ -1,0 +1,17 @@
+<div class="container">
+  <div>
+  <h2>Oturum Aç</h2>
+  <mat-form-field appearance="outline" style="width: 50%;">
+    <mat-label>E-posta</mat-label>
+    <input matInput placeholder="E-posta" type="text" #mail>
+  </mat-form-field> &nbsp;
+
+  <mat-form-field appearance="outline" style="width: 50%;">
+    <mat-label>Parola</mat-label>
+    <input matInput placeholder="Parola" type="password" #parola>
+  </mat-form-field>
+  <p></p>
+  <button mat-raised-button color="primary" (click)="OturumAc(mail.value, parola.value)">Oturum Aç</button>
+  <button mat-button (click)="Ekle()">Üye Değil misin? Kayıt Ol</button>
+  </div>
+</div>

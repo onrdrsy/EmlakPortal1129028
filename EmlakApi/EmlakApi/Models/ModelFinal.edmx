@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="emlakDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ilan">
+          <Key>
+            <PropertyRef Name="IlanId" />
+          </Key>
+          <Property Name="IlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IlanBaslik" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanAciklama" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanFiyat" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="IlanOda" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanKatsayisi" Type="int" />
+          <Property Name="IlanBulunankat" Type="int" />
+          <Property Name="IlanAdres" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanDurum" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanFoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="IlanUyeId" Type="int" />
+          <Property Name="IlanKatId" Type="int" />
+          <Property Name="IlanTarih" Type="datetime" />
+          <Property Name="IlanM2" Type="int" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="KatId" />
+          </Key>
+          <Property Name="KatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KatAdi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Uye">
+          <Key>
+            <PropertyRef Name="UyeId" />
+          </Key>
+          <Property Name="UyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UyeAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="UyeSoyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="UyeTelefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="UyeMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="UyeParola" Type="nvarchar" MaxLength="50" />
+          <Property Name="UyeYetki" Type="int" />
+          <Property Name="UyeKayTar" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Ilan_ToKategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="KatId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="IlanKatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilan_ToUye">
+          <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uye">
+              <PropertyRef Name="UyeId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="IlanUyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="emlakDBModelStoreContainer">
+          <EntitySet Name="Ilan" EntityType="Self.Ilan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ilan_ToKategori" Association="Self.FK_Ilan_ToKategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilan_ToUye" Association="Self.FK_Ilan_ToUye">
+            <End Role="Uye" EntitySet="Uye" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="emlakDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ilan">
+          <Key>
+            <PropertyRef Name="IlanId" />
+          </Key>
+          <Property Name="IlanId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IlanBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanAciklama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanFiyat" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IlanOda" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanKatsayisi" Type="Int32" />
+          <Property Name="IlanBulunankat" Type="Int32" />
+          <Property Name="IlanAdres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanDurum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanFoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IlanUyeId" Type="Int32" />
+          <Property Name="IlanKatId" Type="Int32" />
+          <Property Name="IlanTarih" Type="DateTime" Precision="3" />
+          <Property Name="IlanM2" Type="Int32" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Ilan_ToKategori" FromRole="Ilan" ToRole="Kategori" />
+          <NavigationProperty Name="Uye" Relationship="Self.FK_Ilan_ToUye" FromRole="Ilan" ToRole="Uye" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="KatId" />
+          </Key>
+          <Property Name="KatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KatAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK_Ilan_ToKategori" FromRole="Kategori" ToRole="Ilan" />
+        </EntityType>
+        <EntityType Name="Uye">
+          <Key>
+            <PropertyRef Name="UyeId" />
+          </Key>
+          <Property Name="UyeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UyeAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeTelefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeParola" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UyeYetki" Type="Int32" />
+          <Property Name="UyeKayTar" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ilan" Relationship="Self.FK_Ilan_ToUye" FromRole="Uye" ToRole="Ilan" />
+        </EntityType>
+        <Association Name="FK_Ilan_ToKategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="KatId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="IlanKatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ilan_ToUye">
+          <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+          <End Role="Ilan" Type="Self.Ilan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uye">
+              <PropertyRef Name="UyeId" />
+            </Principal>
+            <Dependent Role="Ilan">
+              <PropertyRef Name="IlanUyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="emlakDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ilan" EntityType="Self.Ilan" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+          <EntitySet Name="Uye" EntityType="Self.Uye" />
+          <AssociationSet Name="FK_Ilan_ToKategori" Association="Self.FK_Ilan_ToKategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ilan_ToUye" Association="Self.FK_Ilan_ToUye">
+            <End Role="Uye" EntitySet="Uye" />
+            <End Role="Ilan" EntitySet="Ilan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="emlakDBModelStoreContainer" CdmEntityContainer="emlakDBEntities">
+          <EntitySetMapping Name="Ilan">
+            <EntityTypeMapping TypeName="emlakDBModel.Ilan">
+              <MappingFragment StoreEntitySet="Ilan">
+                <ScalarProperty Name="IlanId" ColumnName="IlanId" />
+                <ScalarProperty Name="IlanBaslik" ColumnName="IlanBaslik" />
+                <ScalarProperty Name="IlanAciklama" ColumnName="IlanAciklama" />
+                <ScalarProperty Name="IlanFiyat" ColumnName="IlanFiyat" />
+                <ScalarProperty Name="IlanOda" ColumnName="IlanOda" />
+                <ScalarProperty Name="IlanKatsayisi" ColumnName="IlanKatsayisi" />
+                <ScalarProperty Name="IlanBulunankat" ColumnName="IlanBulunankat" />
+                <ScalarProperty Name="IlanAdres" ColumnName="IlanAdres" />
+                <ScalarProperty Name="IlanDurum" ColumnName="IlanDurum" />
+                <ScalarProperty Name="IlanFoto" ColumnName="IlanFoto" />
+                <ScalarProperty Name="IlanUyeId" ColumnName="IlanUyeId" />
+                <ScalarProperty Name="IlanKatId" ColumnName="IlanKatId" />
+                <ScalarProperty Name="IlanTarih" ColumnName="IlanTarih" />
+                <ScalarProperty Name="IlanM2" ColumnName="IlanM2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori">
+            <EntityTypeMapping TypeName="emlakDBModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="KatId" ColumnName="KatId" />
+                <ScalarProperty Name="KatAdi" ColumnName="KatAdi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uye">
+            <EntityTypeMapping TypeName="emlakDBModel.Uye">
+              <MappingFragment StoreEntitySet="Uye">
+                <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+                <ScalarProperty Name="UyeAd" ColumnName="UyeAd" />
+                <ScalarProperty Name="UyeSoyad" ColumnName="UyeSoyad" />
+                <ScalarProperty Name="UyeTelefon" ColumnName="UyeTelefon" />
+                <ScalarProperty Name="UyeMail" ColumnName="UyeMail" />
+                <ScalarProperty Name="UyeParola" ColumnName="UyeParola" />
+                <ScalarProperty Name="UyeYetki" ColumnName="UyeYetki" />
+                <ScalarProperty Name="UyeKayTar" ColumnName="UyeKayTar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

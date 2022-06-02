@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="emlakDBModelStoreContainer" CdmEntityContainer="emlakDBEntities">
+    <EntitySetMapping Name="Ilan">
+      <EntityTypeMapping TypeName="emlakDBModel.Ilan">
+        <MappingFragment StoreEntitySet="Ilan">
+          <ScalarProperty Name="IlanId" ColumnName="IlanId" />
+          <ScalarProperty Name="IlanBaslik" ColumnName="IlanBaslik" />
+          <ScalarProperty Name="IlanAciklama" ColumnName="IlanAciklama" />
+          <ScalarProperty Name="IlanFiyat" ColumnName="IlanFiyat" />
+          <ScalarProperty Name="IlanOda" ColumnName="IlanOda" />
+          <ScalarProperty Name="IlanKatsayisi" ColumnName="IlanKatsayisi" />
+          <ScalarProperty Name="IlanBulunankat" ColumnName="IlanBulunankat" />
+          <ScalarProperty Name="IlanAdres" ColumnName="IlanAdres" />
+          <ScalarProperty Name="IlanDurum" ColumnName="IlanDurum" />
+          <ScalarProperty Name="IlanFoto" ColumnName="IlanFoto" />
+          <ScalarProperty Name="IlanUyeId" ColumnName="IlanUyeId" />
+          <ScalarProperty Name="IlanKatId" ColumnName="IlanKatId" />
+          <ScalarProperty Name="IlanTarih" ColumnName="IlanTarih" />
+          <ScalarProperty Name="IlanM2" ColumnName="IlanM2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategori">
+      <EntityTypeMapping TypeName="emlakDBModel.Kategori">
+        <MappingFragment StoreEntitySet="Kategori">
+          <ScalarProperty Name="KatId" ColumnName="KatId" />
+          <ScalarProperty Name="KatAdi" ColumnName="KatAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uye">
+      <EntityTypeMapping TypeName="emlakDBModel.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+          <ScalarProperty Name="UyeAd" ColumnName="UyeAd" />
+          <ScalarProperty Name="UyeSoyad" ColumnName="UyeSoyad" />
+          <ScalarProperty Name="UyeTelefon" ColumnName="UyeTelefon" />
+          <ScalarProperty Name="UyeMail" ColumnName="UyeMail" />
+          <ScalarProperty Name="UyeParola" ColumnName="UyeParola" />
+          <ScalarProperty Name="UyeYetki" ColumnName="UyeYetki" />
+          <ScalarProperty Name="UyeKayTar" ColumnName="UyeKayTar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

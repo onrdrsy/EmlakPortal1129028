@@ -1,0 +1,71 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container" *ngIf="islem!='detay' ">
+
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline" >
+      <mat-label>Kategori Seçiniz</mat-label>
+      <mat-select matInput placeholder="Kategori Seçiniz" formControlName="IlanKatId" required>
+        <mat-option [value]="kat.KatId" *ngFor="let kat of kategoriler">{{kat.KatAdi}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 75%;">
+      <mat-label>Ilan Başlığı</mat-label>
+      <input matInput placeholder="İlan Başlığı" formControlName="IlanBaslik" name="IlanBaslik" required type="text">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label>Fiyat</mat-label>
+      <input matInput placeholder="0" formControlName="IlanFiyat" name="IlanFiyat" required type="number">
+      <span matPrefix>₺&nbsp;</span>
+      <span matSuffix>.00</span>
+    </mat-form-field>&nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Metre²</mat-label>
+      <input matInput placeholder="m²" formControlName="IlanM2" name="IlanM2" required type="number">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Foto link</mat-label>
+      <input matInput placeholder="Fotoğraf kısa URL" formControlName="IlanFoto" name="IlanFoto" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 75%;">
+      <mat-label>Şehir Seçiniz</mat-label>
+      <mat-select matInput placeholder="Şehir Seçiniz" formControlName="IlanAdres" required>
+        <mat-option [value]="i" *ngFor="let i of iller">{{i}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>Arsa için aşağıdaki alanları boş bırakınız.</p> 
+    <mat-form-field appearance="outline">
+      <mat-label>Bina Kat Sayısı</mat-label>
+      <input matInput placeholder="0" formControlName="IlanKatsayisi" name="IlanKatsayisi" type="number">
+    </mat-form-field>&nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Buldunduğu Kat</mat-label>
+      <input matInput placeholder="0" formControlName="IlanBulunankat" name="IlanBulunankat" type="number">
+    </mat-form-field><br>
+    <mat-form-field appearance="outline">
+      <mat-label>Oda Sayısı</mat-label>
+      <mat-select matInput placeholder="Seçiniz" formControlName="IlanOda" name="IlanOda" >
+        <mat-option value="1+0">1+0</mat-option>
+        <mat-option value="1+1">1+1</mat-option>
+        <mat-option value="2+0">2+0</mat-option>
+        <mat-option value="2+1">2+1</mat-option>
+        <mat-option value="3+1">3+1</mat-option>
+        <mat-option value="5+2">5+2</mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Durum</mat-label>
+      <mat-select matInput placeholder="Seçiniz" formControlName="IlanDurum" name="IlanDurum" required>
+        <mat-option value="Satılık">Satılık</mat-option>
+        <mat-option value="Kiralık">Kiralık</mat-option>
+        <mat-option value="Günlük Kıralık">Günlük Kiralık</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+    <mat-label>Açıklama Girin</mat-label>&nbsp;
+    <angular-editor formControlName="IlanAciklama" [config]="editorConfig" required></angular-editor>
+  </form>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(frm.value)" [disabled]="frm.invalid">Kaydet</button>&nbsp; 
+  <button mat-raised-button color="warn" (click)="dialogRef.close()" >Vazgeç</button>
+  </div>
